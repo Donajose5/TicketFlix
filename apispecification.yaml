@@ -1,0 +1,957 @@
+openapi: 3.0.0
+info:
+  title: TicketFlix
+  description: >
+
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:5000/
+paths:
+  /api/user/{user_id}:
+    description: End point to read, update and delete a user resource with user_id = user_id.
+    get:
+      description: Operation to Read user resource.
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: user object
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                    example: 201
+                  name:
+                    type: string
+                    example: John
+                  email:
+                    type: string
+                    example: john01@example.com
+                  password:
+                    type: string
+                    example: pass
+        '500':
+          description: Internal Server Error
+        '404':
+          description: User not found
+
+    put:
+      description: Operation to update the user resource.
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: john02@example.com
+                name:
+                  type: string
+                  example: john
+      responses:
+        '200':
+          description: Successfuly updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                    example: 201
+                  name:
+                    type: string
+                    example: John
+                  email:
+                    type: string
+                    example: john02@example.com
+                  password:
+                    type: string
+                    example: pass2
+        '404':
+          description: User not found
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+    delete:
+      description: Operation to delete the user resource
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description: User not found
+        '500':
+          description: Intenal Server Error
+
+  /api/user:
+    description: End point to create user resource
+    post:
+      description: Operation to create the user resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: John
+                email:
+                  type: string
+                  example: john01@example.com
+                password:
+                  type: string
+                  example: pass
+      responses:
+        '201':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                    example: 201
+                  name:
+                    type: string
+                    example: John
+                  email:
+                    type: string
+                    example: john01@example.com
+                  Password:
+                    type: string
+                    example: pass
+        '500':
+          description: Internal Server Error
+        '409':
+          description: Username already exists
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+
+  /api/venue/{venue_id}:
+    description: End point to read, update and delete a venue resource with venue_id = venue_id.
+    get:
+      description: Operation to Read venue resource.
+      parameters:
+        - in: path
+          name: venue_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: venue object
+                type: object
+                properties:
+                  venue_id:
+                    type: integer
+                    example: 201
+                  name:
+                    type: string
+                    example: Venue01
+                  location:
+                    type: string
+                    example: Chennai
+                  capacity:
+                    type: integer
+                    example: 100
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Venue not found
+
+    put:
+      description: Operation to update the venue resource.
+      parameters:
+        - in: path
+          name: venue_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Venue01
+                location:
+                  type: string
+                  example: Chennai
+                capacity:
+                  type: integer
+                  example: 100
+      responses:
+        '200':
+          description: Successfuly updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  venue_id:
+                    type: integer
+                    example: 201
+                  name:
+                    type: string
+                    example: Venue01
+                  location:
+                    type: string
+                    example: Chennai
+                  capacity:
+                    type: integer
+                    example: 100
+        '404':
+          description: Venue not found
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+    delete:
+      description: Operation to delete the venue resource
+      parameters:
+        - in: path
+          name: venue_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description: User not found
+        '500':
+          description: Intenal Server Error
+
+  /api/venue:
+    description: End point to create venue resource
+    post:
+      description: Operation to create the venue resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Venue01
+                location:
+                  type: string
+                  example: Chennai
+                capacity:
+                  type: integer
+                  example: 100
+      responses:
+        '201':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  venue_id:
+                    type: integer
+                    example: 201
+                  name:
+                    type: string
+                    example: Venue01
+                  location:
+                    type: string
+                    example: Chennai
+                  capacity:
+                    type: integer
+                    example: 100
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+
+  /api/movie/{movie_id}:
+    description: End point to read, update and delete a movie resource with movie_id = movie_id.
+    get:
+      description: Operation to Read movie resource.
+      parameters:
+        - in: path
+          name: movie_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: movie object
+                type: object
+                properties:
+                  movie_id:
+                    type: integer
+                    example: 201
+                  name:
+                    type: string
+                    example: Movie01
+                  poster:
+                    type: string
+                    example: link
+                  description:
+                    type: string
+                    example: desc
+                  duration:
+                    type: integer
+                    example: 100
+                  rating:
+                    type: integer
+                    example: 10
+                  tags:
+                    type: string
+                    example: Comedy
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Movie not found
+
+    put:
+      description: Operation to update the movie resource.
+      parameters:
+        - in: path
+          name: movie_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Movie01
+                poster:
+                  type: string
+                  example: link
+                description:
+                  type: string
+                  example: desc
+                duration:
+                  type: integer
+                  example: 100
+                rating:
+                  type: integer
+                  example: 10
+                tags:
+                  type: string
+                  example: Comedy
+      responses:
+        '200':
+          description: Successfuly updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  movie_id:
+                    type: integer
+                    example: 201
+                  name:
+                    type: string
+                    example: Movie01
+                  poster:
+                    type: string
+                    example: link
+                  description:
+                    type: string
+                    example: desc
+                  duration:
+                    type: integer
+                    example: 100
+                  rating:
+                    type: integer
+                    example: 10
+                  tags:
+                    type: string
+                    example: Comedy
+        '404':
+          description: Movie not found
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+    delete:
+      description: Operation to delete the movie resource
+      parameters:
+        - in: path
+          name: movie_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description: Movie not found
+        '500':
+          description: Intenal Server Error
+
+  /api/movie:
+    description: End point to create movie resource
+    post:
+      description: Operation to create the movie resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Movie01
+                poster:
+                  type: string
+                  example: link
+                description:
+                  type: string
+                  example: desc
+                duration:
+                  type: integer
+                  example: 100
+                rating:
+                  type: integer
+                  example: 10
+                tags:
+                  type: string
+                  example: Comedy
+      responses:
+        '201':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  movie_id:
+                    type: integer
+                    example: 201
+                  name:
+                    type: string
+                    example: Movie01
+                  poster:
+                    type: string
+                    example: link
+                  description:
+                    type: string
+                    example: desc
+                  duration:
+                    type: integer
+                    example: 100
+                  rating:
+                    type: integer
+                    example: 10
+                  tags:
+                    type: string
+                    example: Comedy
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+
+  /api/show/{show_id}:
+    description: End point to read, update and delete a show resource with show_id = show_id.
+    get:
+      description: Operation to Read show resource.
+      parameters:
+        - in: path
+          name: show_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: show object
+                type: object
+                properties:
+                  show_id:
+                    type: integer
+                    example: 201
+                  venue_id:
+                    type: integer
+                    example: 101
+                  movie_id:
+                    type: integer
+                    example: 301
+                  datetime:
+                    type: string
+                    example: '2023-10-25 20:00'
+                  seats_available:
+                    type: integer
+                    example: 100
+                  price:
+                    type: integer
+                    example: 125
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Show not found
+
+    put:
+      description: Operation to update the show resource.
+      parameters:
+        - in: path
+          name: show_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                venue_id:
+                  type: integer
+                  example: 101
+                movie_id:
+                  type: integer
+                  example: 301
+                datetime:
+                  type: string
+                  example: '2023-10-25 20:00'
+                seats_available:
+                  type: integer
+                  example: 100
+                price:
+                  type: integer
+                  example: 125
+      responses:
+        '200':
+          description: Successfuly updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  show_id:
+                    type: integer
+                    example: 201
+                  venue_id:
+                    type: integer
+                    example: 101
+                  movie_id:
+                    type: integer
+                    example: 301
+                  datetime:
+                    type: string
+                    example: '2023-10-25 20:00'
+                  seats_available:
+                    type: integer
+                    example: 100
+                  price:
+                    type: integer
+                    example: 125
+        '404':
+          description: Show not found
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+    delete:
+      description: Operation to delete the show resource
+      parameters:
+        - in: path
+          name: show_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description: Show not found
+        '500':
+          description: Intenal Server Error
+
+  /api/show:
+    description: End point to create show resource
+    post:
+      description: Operation to create the show resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                venue_id:
+                  type: integer
+                  example: 101
+                movie_id:
+                  type: integer
+                  example: 301
+                datetime:
+                  type: string
+                  example: '2023-10-25 20:00'
+                seats_available:
+                  type: integer
+                  example: 100
+                price:
+                  type: integer
+                  example: 125
+      responses:
+        '201':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  show_id:
+                    type: integer
+                    example: 201
+                  venue_id:
+                    type: integer
+                    example: 101
+                  movie_id:
+                    type: integer
+                    example: 301
+                  datetime:
+                    type: string
+                    example: '2023-10-25 20:00'
+                  seats_available:
+                    type: integer
+                    example: 100
+                  price:
+                    type: integer
+                    example: 125
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+
+  /api/booking/{booking_id}:
+    description: End point to read, update and delete a booking resource with booking_id = booking_id.
+    get:
+      description: Operation to Read booking resource.
+      parameters:
+        - in: path
+          name: booking_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      responses:
+        '200':
+          description: Request Successful
+          content:
+            application/json:
+              schema:
+                title: show object
+                type: object
+                properties:
+                  booking_id:
+                    type: integer
+                    example: 201
+                  user_id:
+                    type: integer
+                    example: 101
+                  show_id:
+                    type: integer
+                    example: 301
+                  datetime:
+                    type: string
+                    example: '2023-10-25 20:00'
+                  quantity:
+                    type: integer
+                    example: 100
+                  total_price:
+                    type: integer
+                    example: 125
+                  status:
+                    type: string
+                    example: Confirmed
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Booking not found
+
+    put:
+      description: Operation to update the booking resource.
+      parameters:
+        - in: path
+          name: booking_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  example: 101
+                show_id:
+                  type: integer
+                  example: 301
+                datetime:
+                  type: string
+                  example: '2023-10-25 20:00'
+                quantity:
+                  type: integer
+                  example: 100
+                total_price:
+                  type: integer
+                  example: 125
+                status:
+                  type: string
+                  example: Confirmed
+      responses:
+        '200':
+          description: Successfuly updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  booking_id:
+                    type: integer
+                    example: 201
+                  user_id:
+                    type: integer
+                    example: 101
+                  show_id:
+                    type: integer
+                    example: 301
+                  datetime:
+                    type: string
+                    example: '2023-10-25 20:00'
+                  quantity:
+                    type: integer
+                    example: 100
+                  total_price:
+                    type: integer
+                    example: 125
+                  status:
+                    type: string
+                    example: Confirmed
+        '404':
+          description: Booking not found
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string
+    delete:
+      description: Operation to delete the booking resource
+      parameters:
+        - in: path
+          name: booking_id
+          required: true
+          schema:
+            type: integer
+            example: 201
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description: Booking not found
+        '500':
+          description: Intenal Server Error
+
+  /api/booking:
+    description: End point to create booking resource
+    post:
+      description: Operation to create the booking resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  example: 101
+                show_id:
+                  type: integer
+                  example: 301
+                datetime:
+                  type: string
+                  example: '2023-10-25 20:00'
+                quantity:
+                  type: integer
+                  example: 100
+                total_price:
+                  type: integer
+                  example: 125
+                status:
+                  type: string
+                  example: Confirmed
+      responses:
+        '201':
+          description: Successfully Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  booking_id:
+                    type: integer
+                    example: 201
+                  user_id:
+                    type: integer
+                    example: 101
+                  show_id:
+                    type: integer
+                    example: 301
+                  datetime:
+                    type: string
+                    example: '2023-10-25 20:00'
+                  quantity:
+                    type: integer
+                    example: 100
+                  total_price:
+                    type: integer
+                    example: 125
+                  status:
+                    type: string
+                    example: Confirmed
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_code:
+                    type: string
+                  error_message:
+                    type: string

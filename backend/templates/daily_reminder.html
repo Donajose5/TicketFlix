@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Reminder</title>
+    <style type="text/css">
+      @page {
+        size: A4 portrait;
+      }
+      .HEADFOOT {
+        min-height: 2%;
+      }
+      @page: right {
+        @bottom-right {
+          content: "Booked Tickets";
+          color: black;
+          font-size: x-small;
+        }
+      }
+      @page: left {
+        @bottom-left {
+          content: "TicketFlix Application";
+          color: black;
+          font-size: x-small;
+        }
+      }
+      h1 {
+        page-break-before: always;
+        margin: 0.5cm 0.2cm 0.2cm;
+        width: 100%;
+      }
+      h1 {
+        page-break-after: avoid;
+      }
+      @page: right {
+        @top-right-corner {
+          content: "Page " counter(page) " of " counter(pages);
+          font-size: x-small;
+        }
+      }
+      html {
+        color: black;
+        font-family: "Verdana", sans-serif;
+        font-size: 15pt;
+        font-weight: 300;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1 style="text-align: center; color: black">TicketFlix</h1>
+    <h4>Dear {{ bookings.user_name }},</h4>
+    <p>We haven't seen you in a while!</p>
+    <p>Come check out some of the new movies we have in store for you!</p>
+    
+    <br>
+      Regards, <br>
+      TicketFlix
+    
+  </body>
+</html>

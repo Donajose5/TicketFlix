@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monthly Report</title>
+    <style type="text/css">
+      @page {
+        size: A4 portrait;
+      }
+      .HEADFOOT {
+        min-height: 2%;
+      }
+      @page: right {
+        @bottom-right {
+          content: "Monthly Bookings Report";
+          color: black;
+          font-size: x-small;
+        }
+      }
+      @page: left {
+        @bottom-left {
+          content: "TicketFlix Application";
+          color: black;
+          font-size: x-small;
+        }
+      }
+      table {
+        page-break-inside: avoid;
+      }
+      h1 {
+        page-break-before: always;
+        margin: 0.5cm 0.2cm 0.2cm;
+        width: 100%;
+      }
+      h1 {
+        page-break-after: avoid;
+      }
+      .tables {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      @page: right {
+        @top-right-corner {
+          content: "Page " counter(page) " of " counter(pages);
+          font-size: x-small;
+        }
+      }
+      html {
+        color: darkgreen;
+        font-weight: 301;
+        line-height: 1.5;
+        font-family: "Verdana", sans-serif;
+        font-size: 7pt;
+      }
+      td {
+        border-top: 0.25pt solid #f5b1b1;
+        margin: 0.25cm 0;
+        text-decoration-line: inherit;
+        padding-top: 0.25cm;
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1 style="text-align: center; color: black">Monthly Report</h1>
+    <div style="text-align: justify; color: black">
+      <h4>Dear Admin,</h4>
+      <p>The bookings for this month</p>
+      {% if (bookings) %}
+      <br />
+      <div style="text-align: center; color: black" class="tables">
+        <table style="border: 2px solid black; border-collapse: collapse">
+          <tr>
+            <th style="border: 2px solid black; border-collapse: collapse">
+              SNo
+            </th>
+            <th style="border: 2px solid black; border-collapse: collapse">
+              Booking ID
+            </th>
+            <th style="border: 2px solid black; border-collapse: collapse">
+              User ID
+            </th>
+            <th style="border: 2px solid black; border-collapse: collapse">
+              User Name
+            </th>
+            <th style="border: 2px solid black; border-collapse: collapse">
+              Movie
+            </th>
+            <th style="border: 2px solid black; border-collapse: collapse">
+              Venue
+            </th>
+            <th style="border: 2px solid black; border-collapse: collapse">
+              Location
+            </th>
+            <th style="border: 2px solid black; border-collapse: collapse">
+              Date
+            </th>
+            <th style="border: 2px solid black; border-collapse: collapse">
+              Time
+            </th>
+            <th style="border: 2px solid black; border-collapse: collapse">
+              Booking Time
+            </th>
+            <th style="border: 2px solid black; border-collapse: collapse">
+              Number of Tickets
+            </th>
+            <th style="border: 2px solid black; border-collapse: collapse">
+              Price
+            </th>
+            <th style="border: 2px solid black; border-collapse: collapse">
+              Status
+            </th>
+
+          </tr>
+          {% for booking in bookings %}
+          <tr>
+            <td style="border: 2px solid black; border-collapse: collapse">
+              {{ booking.SNo }}
+            </td>
+            <td style="border: 2px solid black; border-collapse: collapse">
+              {{ booking.booking_id}}
+            </td>
+            <td style="border: 2px solid black; border-collapse: collapse">
+              {{ booking.user_id }}
+            </td>
+            <td style="border: 2px solid black; border-collapse: collapse">
+              {{ booking.User }}
+            </td>
+            <td style="border: 2px solid black; border-collapse: collapse">
+              {{ booking.Movie }}
+            </td>
+            <td style="border: 2px solid black; border-collapse: collapse">
+              {{ booking.Venue}}
+            </td>
+            <td style="border: 2px solid black; border-collapse: collapse">
+              {{ booking.Location }}
+            </td>
+            <td style="border: 2px solid black; border-collapse: collapse">
+              {{ booking.Date }}
+            </td>
+            <td style="border: 2px solid black; border-collapse: collapse">
+              {{ booking.Time }}
+            </td>
+            <td style="border: 2px solid black; border-collapse: collapse">
+              {{ booking.booking_time }}
+            </td>
+            <td style="border: 2px solid black; border-collapse: collapse">
+              {{ booking.quantity}}
+            </td>
+            <td style="border: 2px solid black; border-collapse: collapse">
+              {{ booking.Price }}
+            </td>
+            <td style="border: 2px solid black; border-collapse: collapse">
+              {{ booking.Status }}
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+        <br />
+      </div>
+       {% else %}
+      <p>
+        Unfortunately, there have been no bookings this month.
+      </p>
+      <br />
+      {% endif %}
+      <br>
+      Regards, <br>
+      TicketFlix
+    </div>
+  </body>
+</html>
